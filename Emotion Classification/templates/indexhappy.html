@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Classification</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100&family=Dancing+Script:wght@400;500&display=swap');
+    </style>
+
+
+
+  </head>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      background-color: lightsteelblue;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .heading1 {
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid lavender;
+      background-color: lavender;
+      width: 50%;
+      text-align: center;
+      margin-top: 2%;
+      border-radius: 5px;
+      color: darkblue;
+      font-family: ;
+    }
+    .heading2 {
+      font-size: 20px;
+      width: 65%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgb(95, 95, 155);
+      color: lavender;
+      border-radius: 5px;
+      margin-top: 1%;
+    }
+
+    .form_div {
+      background-color: aliceblue;
+      width: 600px;
+      height: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1%;
+    }
+
+    .preview_image {
+      width: 100%;
+      background-color: darkblue;
+      border-bottom: 5px solid darkblue;
+      height: 50%;
+    }
+
+    .preview_image img {
+      width: 50%;
+      background-color: aliceblue;
+      height:90%;
+      margin-top: 4%;
+      margin-left: 10%;
+      border-radius: 10px;
+    }
+
+    .form2 {
+      padding: 20px 60px;
+      width: 100%;
+    }
+
+    #image_form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #image_form label {
+      color: rgb(62, 95, 129);
+      font-size: 25px;
+    }
+
+    input[type="file"] {
+      margin-left: 6%;
+      color: rgb(70, 68, 68);
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      background-color: lavender;
+      width: 100px;
+      color: black;
+      font-size: 15px;
+      border: 1px solid lavender;
+    }
+
+    input[type="file"]::-webkit-file-upload-button:hover {
+      background-color: lightblue;
+    }
+
+    input[type="submit"] {
+      color: rgb(232, 232, 232);
+      background-color: rgb(57, 57, 59);
+      border: 1px solid lavender;
+      font-size: 20px;
+      margin-top: 5%;
+      margin-left: 20%;
+      border-radius: 2px;
+      width: 200px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: lightblue;
+    }
+
+    .result {
+      background-color: lightslategray;
+      color: white;
+      font-size: 25px;
+      width: 20%;
+      text-align: center;
+    }
+
+.sign{
+  font-size: 15px;
+  margin-left: 65%;
+  color: darkblue;
+  font-family: 'Dancing Script', cursive ;
+}
+
+  </style>
+
+  <body>
+    <div class="container">
+      <h1 class="heading1">Image Classification</h1>
+      <h2 class="heading2">
+        Let our AI read the smiles and tears with just a click!
+      </h2>
+      <div class="form_div">
+        <div class="preview_image">
+          <img id="image-preview" src="" alt="Image Preview" />
+        </div>
+
+        <div class="form2">
+          <form
+            id="image_form"
+            action="{{ url_for('predict') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="form_"
+          >
+            <div>
+              <label for="image">Choose an image</label>
+              <input type="file" id="image-input" name="image-input" required />
+            </div>
+
+            <input type="submit" value="Predict" />
+
+            <h3 class="result">Result</h3>
+            <label
+              ><input type="radio" name="options" value="Happy" {% if
+              selected_option == 'option1' %}checked{% endif %}>Happy</label
+            ><br />
+            <label
+              ><input type="radio" name="options" value="Sad" {% if
+              selected_option == 'option2' %}checked{% endif %}>Sad</label
+            ><br />
+            <h1 class="sign">Muhammad Mehroz</h1>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+
+    <script>
+      function previewImage() {
+        console.log("Function called");
+        const preview = document.querySelector("#image-preview");
+        const file = document.querySelector("#image-input").files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener(
+          "load",
+          function () {
+            preview.src = reader.result;
+          },
+          false
+        );
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+
+      const input = document.querySelector("#image-input");
+      input.addEventListener("change", previewImage);
+      const h = document.getElementById("result");
+
+
+
+
+    </script>
+
+
+
+  </body>
+</html>
