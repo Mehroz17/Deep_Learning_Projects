@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+ </head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    background-color: rgb(82, 82, 82);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.formdiv{
+    background-color: white;
+    width: 60%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    border-radius: 5px;
+}
+
+.formdiv form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.formdiv textarea{
+    height: 200px;
+}
+.formdiv textarea::placeholder{
+    text-align: center;
+    color: rgb(62, 48, 53);
+}
+
+.formdiv input[type = "submit"]{
+    height: 30px;
+    text-align: center;
+    margin-top: 1%;
+    width: 20%;
+    color: rgb(255, 255, 255);
+    background-color: gray;
+    border: 1px solid white;
+}
+
+
+.formdiv input[type = "submit"]:hover{
+ background-color: rgb(5, 5, 5);
+}
+
+
+
+h1{
+    margin-left: 28%;
+    margin-top: 1%;
+    color: rgb(255, 255, 255);
+}
+
+h2{
+    width: auto;
+    color: brown;
+}
+
+.sign{
+    font-family: 'Dancing Script', cursive;
+    color: cadetblue;
+    font-size: 10px;
+    margin-top: 110px;
+    margin-left: 40%;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Movie Review Prediction </h1>        
+        <div class="formdiv">
+        <form  class = "formactual" action="{{url_for('predict')}}"method = "post">
+            <textarea type="paragraph" name = "review" placeholder="Enter Review" rows="5"cols = "50" ></textarea>
+            <input type = "submit" value="Predict">
+
+            <h2>{{prediction_text}}</h2>
+        </form>
+        <h2 class="sign">Muhammad Mehroz</h2>
+    </div>
+</div>
+</body>
+</html>
